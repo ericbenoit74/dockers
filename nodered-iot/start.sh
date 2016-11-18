@@ -15,7 +15,10 @@
     sed -i "s|httpStatic: '[/_a-zA-Z0-9-]*'|httpStatic: '$HTTP_STATIC'|" /usr/local/lib/node_modules/node-red/settings.js
   fi
 
+  if [ $HTTP_USER ]; then
+    sed -i "s|//httpNodeAuth4script:|httpNodeAuth: { user:\"$HTTP_USER\", pass:\"$HTTP_PASSWORD\" },|" /usr/local/lib/node_modules/node-red/settings.js   
+  fi
+
 # start all the services
 /usr/local/bin/node-red
-
 
